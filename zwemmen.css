@@ -1,0 +1,135 @@
+/* Algemene stijlen */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #ffffff;
+}
+
+/* Container voor consistente breedte en centrering */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+/* Hoofdtitel */
+h2 {
+    font-size: 2.5rem;
+    color: #0a154c;
+    font-family: "DM Sans", sans-serif;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+/* Sectie blokken */
+.section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.section div {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+
+h3 {
+    font-size: 2.2rem;
+    color: #0a154c;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Briefing */
+.briefing {
+    background-color: #eef2f7;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.briefing p {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Open Water Sectie */
+.open-water {
+    background: #ffffff;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.open-water h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.open-water p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.button {
+    display: inline-block;
+    background-color: #0080c6;
+    color: white;
+    padding: 0.8rem 2.2rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-color: #004a99;
+}
+
+/* Responsief voor mobiele schermen */
+@media (max-width: 768px) {
+    .section {
+        grid-template-columns: 1fr;
+    }
+
+    h2 {
+        font-size: 2.4rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+
