@@ -243,7 +243,8 @@ body {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
-    font-family: "Racing Sans One", serif;
+    font-style: normal;
+    font-family: "Racing Sans One", sans-serif;
 }
 
 .hero p {
