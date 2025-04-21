@@ -211,6 +211,41 @@ body {
     margin-bottom: 1.5rem;
 }
 
+/* Media Queries voor Responsiviteit */
+@media (max-width: 768px) {
+    .about h2 {
+        font-size: 2rem; /* Kleiner lettertype op tablets en mobiele schermen */
+    }
+
+    .about p {
+        font-size: 1rem; /* Kleiner lettertype voor betere leesbaarheid */
+    }
+
+    .about-info {
+        flex-direction: column; /* Zet items onder elkaar */
+        gap: 1.5rem; /* Verklein de ruimte tussen de items */
+    }
+
+    .about-text {
+        width: 100%; /* Volledige breedte op kleinere schermen */
+        flex: 1 1 auto; /* Flexibel aanpassen */
+    }
+}
+
+@media (max-width: 480px) {
+    .about h2 {
+        font-size: 1.8rem; /* Nog kleiner lettertype voor kleine schermen */
+    }
+
+    .about p {
+        font-size: 0.9rem; /* Pas tekstgrootte verder aan */
+    }
+
+    .about-text {
+        padding: 1.5rem; /* Verklein padding voor kleinere schermen */
+    }
+}
+
 /* Team Sectie */
 .team {
     text-align: center;

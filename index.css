@@ -243,7 +243,7 @@ body {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
-    font-family: "Racing Sans One";
+    font-family: "Racing Sans One", serif;
 }
 
 .hero p {
@@ -459,21 +459,26 @@ body {
 
 .community-carousel {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Zorg ervoor dat de items gecentreerd worden */
     gap: 1rem;
     padding: 1rem;
     overflow-x: auto;
     scroll-behavior: smooth;
+    scroll-snap-type: x mandatory; /* Zorg ervoor dat het scrolt naar het midden */
+    scroll-padding-left: 50%; /* Zorgt ervoor dat de eerste afbeelding naar het midden schuift */
+    scroll-padding-right: 50%; /* Zorg ervoor dat de laatste afbeelding ook in beeld is */
 }
 
 .carousel-item {
     flex: 0 0 auto;
     width: 300px;
-    background-color: #fff;
+    background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-snap-align: center; /* Zorg ervoor dat de afbeeldingen naar het midden 'snappen' */
 }
 
 .community-image {
@@ -482,6 +487,32 @@ body {
     display: block;
     border-radius: 8px;
 }
+
+@media (max-width: 768px) {
+    .section-title, .community h2 {
+        font-size: 2rem;
+    }
+
+    .community p {
+        font-size: 1rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .carousel-item {
+        width: 80%;
+        flex: 0 0 250px;
+    }
+
+    .community-carousel {
+        padding: 0 0.5rem;
+        scroll-padding-left: 0; /* Geen extra ruimte aan de linkerkant bij mobiele schermen */
+        scroll-padding-right: 0; /* Geen extra ruimte aan de rechterkant bij mobiele schermen */
+        justify-content: flex-start; /* Begin bij de eerste afbeelding */
+    }}
 
 /* Shop Sectie */
 .shop {
