@@ -1,15 +1,4 @@
 /* Algemene stijlen */
-
-@font-face {
-    font-family: "DM Sans", sans-serif;
-    src: url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
-}
-
-@font-face {
-    font-family: "Racing Sans One, sans-serif";
-    src: url("https://fonts.googleapis.com/css2?family=Racing Sans One, sans-serif");
-}
-
 * {
     margin: 0;
     padding: 0;
