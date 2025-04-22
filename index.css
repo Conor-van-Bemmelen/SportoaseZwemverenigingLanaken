@@ -489,6 +489,7 @@ body {
     border-radius: 8px;
 }
 
+/* Mobile specific adjustments */
 @media (max-width: 768px) {
     .section-title, .community h2 {
         font-size: 2rem;
@@ -513,8 +514,8 @@ body {
         scroll-padding-left: 0; /* Geen extra ruimte aan de linkerkant bij mobiele schermen */
         scroll-padding-right: 0; /* Geen extra ruimte aan de rechterkant bij mobiele schermen */
         justify-content: flex-start; /* Begin bij de eerste afbeelding */
-    }}
-
+    }
+}
 /* Shop Sectie */
 .shop {
     padding: 4rem 0;
