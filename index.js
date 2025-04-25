@@ -134,7 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.getElementById('acceptCookies').onclick = function() {
+    document.getElementById('cookieConsent').style.display = 'none';
+    // Sla de cookie-toestemming op in de browser (optioneel)
+    document.cookie = "cookies_accepted=true; path=/; max-age=31536000"; // 1 jaar geldig
+}
 
+document.cookie = "key=value; SameSite=None; Secure";
 
 
 
