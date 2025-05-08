@@ -109,13 +109,14 @@ body {
 }
 
 
-.missie h2 {
-    color: #0080c6; /* De blauwe hoofdkleur voor de koptekst */
-    margin-bottom: 1rem; /* Ruimte onder de koptekst */
-    font-size: 1.5rem; /* Grootte van de koptekst */
-    font-weight: 700; /* Vetgedrukte koptekst voor visuele impact */
-    font-family: "DM Sans", sans-serif; /* Een ander lettertype voor de koptekst */
+
+
+.large-title {
+    font-size: 2rem; /* Maak de tekst groot */
+    font-weight: bold; /* Vetgedrukt */
+    line-height: 1.5; /* Ruimte tussen regels */
 }
+
 
 .missie p {
     margin-top: 0.5rem; /* Kleinere marge boven de paragraaf om het in lijn te brengen met de afbeelding */
@@ -143,15 +144,9 @@ body {
     display: flex;
     flex-direction: column; /* Zorgt ervoor dat de tekst verticaal wordt uitgelijnd */
     justify-content: center; /* Centreert de tekst verticaal ten opzichte van de afbeelding */
+    margin-top: 1.5rem;
 }
 
-.missie-text h2 {
-    font-size: 2.5rem; /* Grote koptekst voor de missie tekst */
-    color: #0a154c; /* Donkere kleur voor de tekst */
-    margin-top: 0.5rem; /* Ruimte boven de koptekst om te zorgen dat het uitlijnt met de afbeelding */
-    margin-bottom: 1rem; /* Ruimte onder de koptekst */
-    font-family: "DM Sans", sans-serif; /* Lettertype voor de koptekst */
-}
 
 .missie-text p {
     font-size: 1.2rem; /* Grotere tekst voor de missie beschrijving */

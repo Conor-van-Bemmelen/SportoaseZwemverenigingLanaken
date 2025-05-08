@@ -16,6 +16,16 @@
     font-family: "DM Sans", sans-serif;
 }
 
+.contact-tekst {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem; /* Verhoogt de leesbaarheid */
+    line-height: 1.6; /* Maakt de tekst prettiger leesbaar */
+    margin: 3rem 0; /* Ruimte tussen de paragrafen */
+    color: #333; /* Neutrale donkere kleur */
+}
+
 
 .contact-form {
     max-width: 600px;
