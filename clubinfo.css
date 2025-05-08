@@ -11,6 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Verberg horizontale scrollbalk */
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -109,8 +110,6 @@ body {
 }
 
 
-
-
 .large-title {
     font-size: 2rem; /* Maak de tekst groot */
     font-weight: bold; /* Vetgedrukt */
@@ -127,7 +126,6 @@ body {
 .missie-content {
     display: flex;
     flex-direction: column; /* Standaard alles onder elkaar */
-    gap: 1.5rem;
     align-items: center;
 }
 
@@ -208,17 +206,11 @@ body {
 
 /* Media Queries voor Responsiviteit */
 @media (max-width: 768px) {
-    .about h2 {
-        font-size: 2rem; /* Kleiner lettertype op tablets en mobiele schermen */
-    }
 
-    .about p {
-        font-size: 1rem; /* Kleiner lettertype voor betere leesbaarheid */
-    }
+
 
     .about-info {
         flex-direction: column; /* Zet items onder elkaar */
-        gap: 1.5rem; /* Verklein de ruimte tussen de items */
     }
 
     .about-text {
@@ -228,13 +220,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .about h2 {
-        font-size: 1.8rem; /* Nog kleiner lettertype voor kleine schermen */
-    }
-
-    .about p {
-        font-size: 0.9rem; /* Pas tekstgrootte verder aan */
-    }
 
     .about-text {
         padding: 1.5rem; /* Verklein padding voor kleinere schermen */
@@ -373,7 +358,7 @@ body {
     background: #f9f9f9;
     text-align: center;
     margin-bottom: 0;
-
+    overflow-x: hidden; /* Verberg horizontale scroll indien nodig */
 }
 
 .sponsors h2 {
@@ -541,9 +526,6 @@ body {
         text-align: left; /* Tekst uitlijnen naar links */
     }
 
-    .missie h2 {
-        text-align: left; /* Koptekst links uitlijnen */
-    }
 
     .missie-image {
         width: 50%; /* Afbeelding krijgt de andere helft van de breedte */
@@ -551,6 +533,10 @@ body {
 }
 
 @media (max-width: 768px) {
+
+    .large-title {
+        margin-top: 1rem;
+    }
     .missie-content {
         display: flex; /* Zorg ervoor dat de flexbox actief blijft */
         flex-direction: column-reverse; /* Afbeelding komt onder de tekst */
@@ -563,10 +549,6 @@ body {
         text-align: center; /* Tekst centreren */
     }
 
-    .missie h2 {
-        text-align: center; /* Koptekst centreren */
-    }
-
     .missie-image img {
         margin-top: 1.5rem; /* Extra ruimte tussen tekst en afbeelding */
         width: 90%; /* Afbeelding schaalt naar 90% van de containerbreedte */
@@ -577,6 +559,9 @@ body {
 
 
 @media (max-width: 480px) {
+    .large-title {
+        margin-top: 10rem;
+    }
     .missie-content {
         flex-direction: column-reverse; /* Plaats afbeelding onder de tekst */
     }
@@ -585,9 +570,6 @@ body {
         text-align: center;
     }
 
-    .missie h2 {
-        text-align: center; /* Koptekst blijft gecentreerd */
-    }
 
     .missie-image img {
         margin-top: 1.5rem; /* Extra ruimte tussen tekst en afbeelding */
