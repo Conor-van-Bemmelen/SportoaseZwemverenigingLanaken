@@ -96,7 +96,7 @@ body {
     background: linear-gradient(135deg, #f5f7fb, #e4e9f2); /* Gradient-achtergrond */
     border: 1px solid #dfe3ea; /* Dunne rand */
     border-radius: 16px; /* Meer afgeronde hoeken voor een modernere uitstraling */
-    margin: 3rem auto; /* Originele marge boven en onder */
+    margin: 3rem auto 8rem auto; /* Originele marge boven en onder */
     max-width: 900px; /* Beperk de breedte voor betere leesbaarheid */
     box-shadow: 0 8px 12px rgba(0, 128, 198, 0.15); /* Schaduw voor diepte */
     text-align: left; /* Zorgt voor een nette uitlijning van de tekst */
@@ -104,8 +104,6 @@ body {
     font-size: 1rem; /* Zorgt voor een leesbare tekstgrootte */
     color: #333; /* Donkere kleur voor tekst */
     line-height: 1.8; /* Verhoog de leesbaarheid door meer ruimte tussen regels */
-    margin-top: 1rem;
-    margin-bottom: 10rem; /* Kleinere marge onderaan */
     font-weight: 550;
 }
 
@@ -264,6 +262,7 @@ body {
     margin-bottom: 1rem;
     object-fit: cover;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    object-position: 80% 20%;
 }
 
 .team-member p {
@@ -287,6 +286,13 @@ body {
     font-size: 1.2rem;
     line-height: 1.8;
 }
+
+@media (max-width: 768px)  {
+.story p {
+font-size: 1rem;}
+}
+
+
 
 /* Community */
 .community {
@@ -565,14 +571,16 @@ body {
     .missie-content {
         flex-direction: column-reverse; /* Plaats afbeelding onder de tekst */
     }
-
+.missie {
+    padding-top: 0;
+}
     .missie-text {
         text-align: center;
     }
 
 
     .missie-image img {
-        margin-top: 1.5rem; /* Extra ruimte tussen tekst en afbeelding */
+        margin-bottom: 1.5rem; /* Extra ruimte tussen tekst en afbeelding */
     }
     .logo-image {
         height: 5rem;
