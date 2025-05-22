@@ -135,11 +135,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function showCookieBannerIfNoConsent() {
-    if (!localStorage.getItem('cookiesConsent')) {
-        document.getElementById('cookie-banner').style.display = 'block';
-    } else {
+    if (localStorage.getItem('cookiesConsent') === 'accepted') {
+        // banner NIET tonen, scripts laden direct
+        loadExternalScripts();
         document.getElementById('cookie-banner').style.display = 'none';
+    } else {
+        // banner tonen
+        document.getElementById('cookie-banner').style.display = 'block';
     }
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
