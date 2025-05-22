@@ -134,11 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Toon banner alleen als er nog geen keuze is
+function showCookieBannerIfNoConsent() {
     if (!localStorage.getItem('cookiesConsent')) {
         document.getElementById('cookie-banner').style.display = 'block';
+    } else {
+        document.getElementById('cookie-banner').style.display = 'none';
     }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    showCookieBannerIfNoConsent();
 
     // Functie om externe scripts te laden NA toestemming
     function loadExternalScripts() {
@@ -181,16 +186,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toestemming wijzigen knop
     document.getElementById('change-cookies').onclick = function() {
         localStorage.removeItem('cookiesConsent'); // Verwijder eerdere keuze
-        document.getElementById('cookie-banner').style.display = 'block'; // Toon de banner opnieuw
+        document.getElementById('cookie-banner').style.display = 'block'; // Toon banner opnieuw
     };
+});
 
-    // Scripts meteen laden bij eerdere toestemming
+// Safari: zorg dat banner ook getoond wordt bij pagina refresh via 'pageshow' event
+window.addEventListener('pageshow', function(event) {
+    // alleen als er geen consent is
     if (!localStorage.getItem('cookiesConsent')) {
         document.getElementById('cookie-banner').style.display = 'block';
     }
 });
-
-
 
 
 
