@@ -135,15 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function showCookieBannerIfNoConsent() {
-    if (localStorage.getItem('cookiesConsent') === 'accepted') {
-        // banner NIET tonen, scripts laden direct
-        loadExternalScripts();
-        document.getElementById('cookie-banner').style.display = 'none';
-    } else {
-        // banner tonen
-        document.getElementById('cookie-banner').style.display = 'block';
-    }
+    const consent = localStorage.getItem('cookiesConsent');
+    const banner = document.getElementById('cookie-banner');
 
+    if (consent === 'accepted') {
+        // Consent al gegeven, scripts laden
+        loadExternalScripts();
+        if (banner) banner.style.display = 'none';
+    } else {
+        // Geen consent, toon banner
+        if (banner) banner.style.display = 'block';
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -196,11 +198,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Safari: zorg dat banner ook getoond wordt bij pagina refresh via 'pageshow' event
 window.addEventListener('pageshow', function(event) {
-    // alleen als er geen consent is
-    if (!localStorage.getItem('cookiesConsent')) {
-        document.getElementById('cookie-banner').style.display = 'block';
+    const consent = localStorage.getItem('cookiesConsent');
+    const banner = document.getElementById('cookie-banner');
+
+    if (!consent && banner) {
+        banner.style.display = 'block';
     }
 });
+
 
 
 
