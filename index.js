@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM volledig geladen');
+
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -131,13 +132,22 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.log('Nav-toggle of nav-links niet gevonden');
     }
-});
 
+    // Functie om de banner te tonen of te verbergen op basis van toestemming
+    function showCookieBannerIfNoConsent() {
+        const banner = document.getElementById('cookie-banner');
+        if (!banner) {
+            console.error('Cookie-banner niet gevonden!');
+            return;
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Toon banner alleen als er nog geen keuze is
-    if (!localStorage.getItem('cookiesConsent')) {
-        document.getElementById('cookie-banner').style.display = 'block';
+        const consent = localStorage.getItem('cookiesConsent');
+        if (consent === 'accepted') {
+            banner.style.display = 'none';
+            loadExternalScripts();
+        } else {
+            banner.style.display = 'block';
+        }
     }
 
     // Functie om externe scripts te laden NA toestemming
@@ -166,30 +176,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Afhandeling akkoord
-    document.getElementById('accept-cookies').onclick = function() {
+    document.getElementById('accept-cookies').onclick = function () {
         localStorage.setItem('cookiesConsent', 'accepted');
         document.getElementById('cookie-banner').style.display = 'none';
         loadExternalScripts();
     };
 
     // Afhandeling weigeren
-    document.getElementById('decline-cookies').onclick = function() {
+    document.getElementById('decline-cookies').onclick = function () {
         localStorage.setItem('cookiesConsent', 'declined');
         document.getElementById('cookie-banner').style.display = 'none';
     };
 
     // Toestemming wijzigen knop
-    document.getElementById('change-cookies').onclick = function() {
+    document.getElementById('change-cookies').onclick = function () {
         localStorage.removeItem('cookiesConsent'); // Verwijder eerdere keuze
-        document.getElementById('cookie-banner').style.display = 'block'; // Toon de banner opnieuw
+        document.getElementById('cookie-banner').style.display = 'block'; // Toon banner opnieuw
     };
 
-    // Scripts meteen laden bij eerdere toestemming
-    if (localStorage.getItem('cookiesConsent') === 'accepted') {
-        loadExternalScripts();
-    }
+    // Toon of verberg de cookie-banner
+    showCookieBannerIfNoConsent();
 });
-
 
 
 
