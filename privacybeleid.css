@@ -1,0 +1,102 @@
+/* Algemene stijlen */
+.nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Verberg horizontale scrollbalk */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+
+}
+
+/* Algemene body-stijl wordt al door jouw css geregeld */
+
+.privacy-container {
+    max-width: 900px;
+    margin: 3rem auto 6rem auto;
+    padding: 0 1rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.7;
+}
+
+.privacy-container h1,
+.privacy-container h2 {
+    font-family: "DM Sans", sans-serif;
+    color: #0a154c;
+    margin-bottom: 1rem;
+}
+
+.privacy-container h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.privacy-container h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-container p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-container ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    list-style-type: disc;
+    color: #555;
+}
+
+.privacy-container ul li {
+    margin-bottom: 0.6rem;
+}
+
+.privacy-container a {
+    color: #0080c6;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.privacy-container a:hover {
+    color: #005a99;
+    text-decoration: underline;
+}
+
+/* Maak de container responsive */
+@media (max-width: 768px) {
+    .privacy-container {
+        padding: 0 1rem;
+        margin: 2rem auto 4rem auto;
+    }
+
+    .privacy-container h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .privacy-container h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .privacy-container p,
+    .privacy-container ul li {
+        font-size: 1rem;
+    }
+}

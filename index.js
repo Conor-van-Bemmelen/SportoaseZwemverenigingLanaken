@@ -134,13 +134,63 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.getElementById('acceptCookies').onclick = function() {
-    document.getElementById('cookieConsent').style.display = 'none';
-    // Sla de cookie-toestemming op in de browser (optioneel)
-    document.cookie = "cookies_accepted=true; path=/; max-age=31536000"; // 1 jaar geldig
-}
+document.addEventListener('DOMContentLoaded', function() {
+    // Toon banner alleen als er nog geen keuze is
+    if (!localStorage.getItem('cookiesConsent')) {
+        document.getElementById('cookie-banner').style.display = 'block';
+    }
 
-document.cookie = "key=value; SameSite=None; Secure";
+    // Functie om externe scripts te laden NA toestemming
+    function loadExternalScripts() {
+        try {
+            // Google Fonts laden
+            if (!document.getElementById('google-fonts')) {
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap';
+                link.rel = 'stylesheet';
+                link.id = 'google-fonts';
+                document.head.appendChild(link);
+            }
+
+            // Google Maps laden
+            if (!document.getElementById('google-maps')) {
+                const script = document.createElement('script');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAy7cFa8ZD0LV_83tuQ_BE8py5dX29wPpU&callback=initMap';
+                script.async = true;
+                script.id = 'google-maps';
+                document.body.appendChild(script);
+            }
+        } catch (error) {
+            console.error("Er ging iets mis met het laden van externe scripts:", error);
+        }
+    }
+
+    // Afhandeling akkoord
+    document.getElementById('accept-cookies').onclick = function() {
+        localStorage.setItem('cookiesConsent', 'accepted');
+        document.getElementById('cookie-banner').style.display = 'none';
+        loadExternalScripts();
+    };
+
+    // Afhandeling weigeren
+    document.getElementById('decline-cookies').onclick = function() {
+        localStorage.setItem('cookiesConsent', 'declined');
+        document.getElementById('cookie-banner').style.display = 'none';
+    };
+
+    // Toestemming wijzigen knop
+    document.getElementById('change-cookies').onclick = function() {
+        localStorage.removeItem('cookiesConsent'); // Verwijder eerdere keuze
+        document.getElementById('cookie-banner').style.display = 'block'; // Toon de banner opnieuw
+    };
+
+    // Scripts meteen laden bij eerdere toestemming
+    if (!localStorage.getItem('cookiesConsent')) {
+        document.getElementById('cookie-banner').style.display = 'block';
+    }
+});
+
+
 
 
 

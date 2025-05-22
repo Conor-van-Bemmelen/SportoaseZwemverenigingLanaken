@@ -285,6 +285,37 @@ body {
     background: #004a99;
 }
 
+
+.cookie-button {
+    margin-left: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #0080c6; /* Zelfde blauw als btn-primary achtergrond */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cookie-button:hover {
+    background-color: #004a99; /* Donkerder blauw zoals btn-primary hover */
+}
+
+.privacy-link {
+    color: #0080c6; /* Gebruik zelfde blauw als buttons */
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.privacy-link:hover {
+    color: #004a99; /* Donkerder blauw bij hover */
+    text-decoration: underline;
+}
+
+
 /* Zwemmen Sectie */
 .swimming {
     padding: 6rem 2rem;
