@@ -134,50 +134,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-let consentFallback = null; // Fallback in geval localStorage niet beschikbaar is
-
-function isLocalStorageAvailable() {
-    try {
-        localStorage.setItem('test', 'test');
-        localStorage.removeItem('test');
-        return true;
-    } catch (e) {
-        return false;
+document.addEventListener('DOMContentLoaded', function() {
+    // Toon banner alleen als er nog geen keuze is
+    if (!localStorage.getItem('cookiesConsent')) {
+        document.getElementById('cookie-banner').style.display = 'block';
     }
-}
-
-function getConsentStatus() {
-    if (isLocalStorageAvailable()) {
-        return localStorage.getItem('cookiesConsent');
-    } else {
-        return consentFallback;
-    }
-}
-
-function setConsentStatus(value) {
-    if (isLocalStorageAvailable()) {
-        localStorage.setItem('cookiesConsent', value);
-    } else {
-        consentFallback = value;
-    }
-}
-
-function showCookieBannerIfNoConsent() {
-    const consent = getConsentStatus();
-    const banner = document.getElementById('cookie-banner');
-
-    if (consent === 'accepted') {
-        // Consent al gegeven, scripts laden
-        loadExternalScripts();
-        if (banner) banner.style.display = 'none';
-    } else {
-        // Geen consent, toon banner
-        if (banner) banner.style.display = 'block';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    showCookieBannerIfNoConsent();
 
     // Functie om externe scripts te laden NA toestemming
     function loadExternalScripts() {
@@ -205,34 +166,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Afhandeling akkoord
-    document.getElementById('accept-cookies').onclick = function () {
-        setConsentStatus('accepted');
+    document.getElementById('accept-cookies').onclick = function() {
+        localStorage.setItem('cookiesConsent', 'accepted');
         document.getElementById('cookie-banner').style.display = 'none';
         loadExternalScripts();
     };
 
     // Afhandeling weigeren
-    document.getElementById('decline-cookies').onclick = function () {
-        setConsentStatus('declined');
+    document.getElementById('decline-cookies').onclick = function() {
+        localStorage.setItem('cookiesConsent', 'declined');
         document.getElementById('cookie-banner').style.display = 'none';
     };
 
     // Toestemming wijzigen knop
-    document.getElementById('change-cookies').onclick = function () {
-        setConsentStatus(null); // Verwijder eerdere keuze
-        document.getElementById('cookie-banner').style.display = 'block'; // Toon banner opnieuw
+    document.getElementById('change-cookies').onclick = function() {
+        localStorage.removeItem('cookiesConsent'); // Verwijder eerdere keuze
+        document.getElementById('cookie-banner').style.display = 'block'; // Toon de banner opnieuw
     };
-});
 
-// Safari: zorg dat banner ook getoond wordt bij pagina refresh via 'pageshow' event
-window.addEventListener('pageshow', function (event) {
-    const consent = getConsentStatus();
-    const banner = document.getElementById('cookie-banner');
-
-    if (!consent && banner) {
-        banner.style.display = 'block';
+    // Scripts meteen laden bij eerdere toestemming
+    if (localStorage.getItem('cookiesConsent') === 'accepted') {
+        loadExternalScripts();
     }
 });
+
 
 
 
