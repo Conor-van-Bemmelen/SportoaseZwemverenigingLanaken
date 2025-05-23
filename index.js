@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM volledig geladen');
+
     // Hamburgermenu-functionaliteit
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -6,19 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (navToggle && navLinks) {
         navToggle.addEventListener('click', () => {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', !isExpanded);
             navLinks.classList.toggle('active');
+            document.body.style.overflow = isExpanded ? '' : 'hidden'; // Scrollen in/uit
         });
 
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                document.body.style.overflow = ''; // Scrollen herstellen
             });
         });
     }
 
     // Carousel-functionaliteit
     const carousel = document.querySelector('.community-carousel');
-    if (carousel) { // Controleer of carousel bestaat
+    if (carousel) {
         let isDown = false;
         let startX;
         let scrollLeft;
@@ -59,17 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById("registerForm");
 
     if (modal) {
-        if (loginButton) {
-            loginButton.addEventListener("click", () => {
-                modal.style.display = "flex"; // Gebruik flex om de modal te centreren
-            });
-        }
+        loginButton?.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
 
-        if (closeButton) {
-            closeButton.addEventListener("click", () => {
-                modal.style.display = "none";
-            });
-        }
+        closeButton?.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
 
         window.addEventListener("click", (event) => {
             if (event.target === modal) {
@@ -77,126 +79,74 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (registerLink) {
-            registerLink.addEventListener("click", (e) => {
-                e.preventDefault();
-                loginForm.style.display = "none";
-                registerForm.style.display = "block";
-            });
-        }
+        registerLink?.addEventListener("click", (e) => {
+            e.preventDefault();
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+        });
 
-        if (loginLink) {
-            loginLink.addEventListener("click", (e) => {
-                e.preventDefault();
-                registerForm.style.display = "none";
-                loginForm.style.display = "block";
-            });
-        }
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-
-            // Schakel scrollen in of uit
-            if (!isExpanded) {
-                document.body.style.overflow = 'hidden'; // Scrollen uitschakelen
-            } else {
-                document.body.style.overflow = ''; // Scrollen herstellen
-            }
+        loginLink?.addEventListener("click", (e) => {
+            e.preventDefault();
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
         });
     }
-});
 
+    // Cookie-banner functionaliteit
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+    const declineBtn = document.getElementById("decline-cookies");
+    const changeCookiesBtn = document.getElementById("change-cookies");
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM volledig geladen');
-
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (navToggle && navLinks) {
-        console.log('Elementen gevonden');
-        navToggle.addEventListener('click', () => {
-            console.log('Knop geklikt');
-            navLinks.classList.toggle('active');
-        });
-    } else {
-        console.log('Nav-toggle of nav-links niet gevonden');
-    }
-
-    // Functie om de banner te tonen of te verbergen op basis van toestemming
-    function showCookieBannerIfNoConsent() {
-        const banner = document.getElementById('cookie-banner');
-        if (!banner) {
-            console.error('Cookie-banner niet gevonden!');
-            return;
+    const loadExternalScripts = () => {
+        if (!document.getElementById("google-fonts")) {
+            const link = document.createElement("link");
+            link.href = "https://fonts.googleapis.com/css2?family=Open+Sans&display=swap";
+            link.rel = "stylesheet";
+            link.id = "google-fonts";
+            document.head.appendChild(link);
         }
+    };
 
-        const consent = localStorage.getItem('cookiesConsent');
-        if (consent === 'accepted') {
-            banner.style.display = 'none';
-            loadExternalScripts();
+    const showCookieBannerIfNoConsent = () => {
+        const consent = localStorage.getItem("cookiesConsent");
+        if (consent === "accepted" || consent === "declined") {
+            banner.style.display = "none";
+            if (consent === "accepted") loadExternalScripts();
         } else {
-            banner.style.display = 'block';
+            banner.style.display = "flex";
         }
-    }
+    };
 
-    // Functie om externe scripts te laden NA toestemming
-    function loadExternalScripts() {
-        try {
-            // Google Fonts laden
-            if (!document.getElementById('google-fonts')) {
-                const link = document.createElement('link');
-                link.href = 'https://fonts.googleapis.com/css2?family=Open+Sans&display=swap';
-                link.rel = 'stylesheet';
-                link.id = 'google-fonts';
-                document.head.appendChild(link);
-            }
-
-            // Google Maps laden
-            if (!document.getElementById('google-maps')) {
-                const script = document.createElement('script');
-                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAy7cFa8ZD0LV_83tuQ_BE8py5dX29wPpU&callback=initMap';
-                script.async = true;
-                script.id = 'google-maps';
-                document.body.appendChild(script);
-            }
-        } catch (error) {
-            console.error("Er ging iets mis met het laden van externe scripts:", error);
-        }
-    }
-
-    // Afhandeling akkoord
-    document.getElementById('accept-cookies').onclick = function () {
-        localStorage.setItem('cookiesConsent', 'accepted');
-        document.getElementById('cookie-banner').style.display = 'none';
+    acceptBtn?.addEventListener("click", () => {
+        localStorage.setItem("cookiesConsent", "accepted");
+        banner.style.display = "none";
         loadExternalScripts();
-    };
+    });
 
-    // Afhandeling weigeren
-    document.getElementById('decline-cookies').onclick = function () {
-        localStorage.setItem('cookiesConsent', 'declined');
-        document.getElementById('cookie-banner').style.display = 'none';
-    };
+    declineBtn?.addEventListener("click", () => {
+        localStorage.setItem("cookiesConsent", "declined");
+        banner.style.display = "none";
+    });
 
-    // Toestemming wijzigen knop
-    document.getElementById('change-cookies').onclick = function () {
-        localStorage.removeItem('cookiesConsent'); // Verwijder eerdere keuze
-        document.getElementById('cookie-banner').style.display = 'block'; // Toon banner opnieuw
-    };
+    changeCookiesBtn?.addEventListener("click", () => {
+        localStorage.removeItem("cookiesConsent");
+        banner.style.display = "flex";
+    });
 
-    // Toon of verberg de cookie-banner
+    // Init op DOM ready
     showCookieBannerIfNoConsent();
+
+    // Extra: check ook op pageshow event (bij terug navigeren uit cache)
+    window.addEventListener("pageshow", () => {
+        showCookieBannerIfNoConsent();
+    });
 });
+
+
+
+
+
 
 
 
