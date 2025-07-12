@@ -335,6 +335,11 @@ font-size: 1rem;}
     scroll-snap-align: center; /* Snapt elk item naar het midden bij scrollen */
 }
 
+.gallery-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
 
 .gallery-item img {
