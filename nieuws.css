@@ -27,6 +27,8 @@ body {
     position: relative;
     margin-bottom: 3rem; /* Verander de margin om een betere lay-out op mobiel te krijgen */
     padding: 1rem;
+    border-left: 6px solid #0080c6; /* Blauwe accentlijn */
+
 }
 
 .news-image {
